@@ -25,4 +25,8 @@ public class ParkingLot {
     private boolean isFull() {
         return ticketCarMapping.values().size() == capacity;
     }
+
+    public Car takeCar(Ticket ticket) {
+        return null;
+    }
 }
