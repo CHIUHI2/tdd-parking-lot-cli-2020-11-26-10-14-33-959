@@ -27,6 +27,6 @@ public class ParkingLot {
     }
 
     public Car takeCar(Ticket ticket) {
-        return null;
+        return this.ticketCarMapping.get(ticket);
     }
 }
