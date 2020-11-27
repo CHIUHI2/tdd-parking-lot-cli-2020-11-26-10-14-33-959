@@ -2,6 +2,6 @@ package com.oocl.cultivation;
 
 public class ParkingLot {
     public Ticket parkCar(Car car) {
-        return null;
+        return new Ticket();
     }
 }
