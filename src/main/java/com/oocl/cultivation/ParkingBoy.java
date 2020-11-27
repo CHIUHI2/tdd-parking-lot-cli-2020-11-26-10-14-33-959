@@ -1,6 +1,7 @@
 package com.oocl.cultivation;
 
 public class ParkingBoy {
-    public void parkCar(Car car, ParkingLot parkingLot) {
+    public Ticket parkCar(Car car, ParkingLot parkingLot) {
+        return parkingLot.parkCar(car);
     }
 }
