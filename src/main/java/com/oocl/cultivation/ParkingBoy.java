@@ -5,7 +5,7 @@ public class ParkingBoy {
         return parkingLot.parkCar(car);
     }
 
-    public Car takeCar(Ticket ticket, ParkingLot parkingLot) {
+    public Car takeCar(Ticket ticket, ParkingLot parkingLot) throws UnrecognizedTicketException{
         return parkingLot.takeCar(ticket);
     }
 }
