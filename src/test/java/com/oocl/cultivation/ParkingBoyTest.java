@@ -20,15 +20,4 @@ class ParkingBoyTest {
         //then
         verify(parkingLot, times(1)).parkCar(car);
     }
-
-    @Test
-    void should_return_ticket_when_parking_lot_park_car_given_parking_lot_car() {
-        //given
-        ParkingLot parkingLot = new ParkingLot();
-        Car car = new Car();
-        //when
-        Ticket ticket = parkingLot.parkCar(car);
-        //then
-        assertNotNull(ticket);
-    }
 }
