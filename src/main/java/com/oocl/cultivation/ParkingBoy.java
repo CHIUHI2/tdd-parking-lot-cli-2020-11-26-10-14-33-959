@@ -6,6 +6,10 @@ public class ParkingBoy {
     }
 
     public Car takeCar(Ticket ticket, ParkingLot parkingLot) throws UnrecognizedTicketException{
+        Car car = parkingLot.takeCar(ticket);
+
+        if(car == null) { throw new UnrecognizedTicketException(); }
+
         return parkingLot.takeCar(ticket);
     }
 }
