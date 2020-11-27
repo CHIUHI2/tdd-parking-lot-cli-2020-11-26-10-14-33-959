@@ -6,6 +6,8 @@ import org.mockito.Mockito;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 class ParkingBoyTest {
     @Test
     void should_call_parking_lot_park_car_once_when_parking_boy_park_car_given_parking_lot_parking_boy_car() {
@@ -17,5 +19,16 @@ class ParkingBoyTest {
         parkingBoy.parkCar(car, parkingLot);
         //then
         verify(parkingLot, times(1)).parkCar(car);
+    }
+
+    @Test
+    void should_return_ticket_when_parking_lot_park_car_given_parking_lot_car() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+        //when
+        Ticket ticket = parkingLot.parkCar(car);
+        //then
+        assertNotNull(ticket);
     }
 }
