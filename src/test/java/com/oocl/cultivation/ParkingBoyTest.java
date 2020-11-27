@@ -14,7 +14,7 @@ class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy();
         Car car = new Car();
         //when
-        parkingBoy.parkCar(car);
+        parkingBoy.parkCar(car, parkingLot);
         //then
         verify(parkingLot, times(1)).parkCar(car);
     }
