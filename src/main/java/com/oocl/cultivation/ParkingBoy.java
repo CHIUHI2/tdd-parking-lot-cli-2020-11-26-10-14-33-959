@@ -10,6 +10,6 @@ public class ParkingBoy {
 
         if(car == null) { throw new UnrecognizedTicketException(); }
 
-        return parkingLot.takeCar(ticket);
+        return car;
     }
 }
