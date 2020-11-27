@@ -68,4 +68,17 @@ public class ParkingLotTest {
         //then
         assertNull(carTaken);
     }
+
+    @Test
+    void should_return_null_when_parking_lot_take_car_given_car_parked_parking_lot_and_invalid_ticket() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        Car car = new Car();
+        Ticket ticket = new Ticket();
+        //when
+        parkingLot.parkCar(car);
+        Car carTaken = parkingLot.takeCar(ticket);
+        //then
+        assertNull(carTaken);
+    }
 }
