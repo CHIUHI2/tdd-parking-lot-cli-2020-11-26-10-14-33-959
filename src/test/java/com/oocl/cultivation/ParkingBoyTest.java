@@ -46,7 +46,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_get_unrecognized_ticket_exception_when_parking_boy_take_car_given_car_parked_parking_lot_used_ticket() throws UnrecognizedTicketException {
+    void should_get_unrecognized_ticket_exception_when_parking_boy_take_car_given_car_parked_parking_lot_used_ticket() throws UnrecognizedTicketException, ParkingLotFullException {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         ParkingBoy parkingBoy = new ParkingBoy();
@@ -57,5 +57,20 @@ class ParkingBoyTest {
         UnrecognizedTicketException exception = assertThrows(UnrecognizedTicketException.class, () -> parkingBoy.takeCar(ticket, parkingLot));
         //then
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
+    }
+
+    @Test
+    void should_get_parking_lot_full_exception_when_parking_boy_park_car_given_parking_lot_capacity_one_car_two() throws ParkingLotFullException {
+
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Car car1 = new Car();
+        Car car2 = new Car();
+        //when
+        parkingBoy.parkCar(car1, parkingLot);
+        ParkingLotFullException exception = assertThrows(ParkingLotFullException.class, () -> parkingBoy.parkCar(car2, parkingLot));
+        //then
+        assertEquals("Not enough position.", exception.getMessage());
     }
 }
