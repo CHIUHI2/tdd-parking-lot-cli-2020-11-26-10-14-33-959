@@ -1,7 +1,9 @@
 package com.oocl.cultivation;
 
 public class ParkingBoy {
-    public Ticket parkCar(Car car, ParkingLot parkingLot) {
+    public Ticket parkCar(Car car, ParkingLot parkingLot) throws ParkingLotFullException{
+        if(parkingLot.isFull()) { throw new ParkingLotFullException(); }
+
         return parkingLot.parkCar(car);
     }
 

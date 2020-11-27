@@ -22,7 +22,7 @@ public class ParkingLot {
         return ticket;
     }
 
-    private boolean isFull() {
+    public boolean isFull() {
         return ticketCarMapping.values().size() == capacity;
     }
 
