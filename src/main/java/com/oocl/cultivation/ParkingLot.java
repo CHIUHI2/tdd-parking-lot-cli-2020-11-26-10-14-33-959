@@ -29,6 +29,8 @@ public class ParkingLot {
         return this.ticketCarMapping.values().size() == this.capacity;
     }
 
+    public Integer getAvailableSpaceAmount() { return this.capacity - this.ticketCarMapping.values().size(); }
+
     public Car takeCar(Ticket ticket) {
         if (ticket == null) return null;
 

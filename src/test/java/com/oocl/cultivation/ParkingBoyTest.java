@@ -14,7 +14,11 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 class ParkingBoyTest {
-    ParkingBoy parkingBoy = new ParkingBoy();
+    private ParkingBoy parkingBoy = this.getParkingBoy();
+
+    protected ParkingBoy getParkingBoy() {
+        return new ParkingBoy();
+    }
 
     @Test
     void should_call_parking_lot_park_car_once_when_park_car_given_parking_lot_parking_boy_car() throws ParkingLotFullException {
