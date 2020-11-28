@@ -54,6 +54,20 @@ class ParkingBoyTest {
     }
 
     @Test
+    void should_not_call_parking_lot_take_car_when_take_car_given_not_managed_parking_lot_parking_boy_ticket() throws UnrecognizedTicketException {
+        //given
+        ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
+
+        Ticket ticket = new Ticket(parkingLot);
+
+        //when
+        parkingBoy.takeCar(ticket);
+
+        //then
+        verify(parkingLot, times(0)).takeCar(ticket);
+    }
+
+    @Test
     void should_get_unrecognized_ticket_exception_when_take_car_given_parking_lot_invalid_ticket_parking_boy() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
