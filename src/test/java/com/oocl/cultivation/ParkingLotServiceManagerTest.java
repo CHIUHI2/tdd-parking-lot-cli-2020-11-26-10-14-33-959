@@ -107,4 +107,26 @@ public class ParkingLotServiceManagerTest extends ParkingBoyTest {
         //then
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
+
+    @Test
+    void should_get_unrecognized_ticket_exception_when_take_car_given_car_parked_parking_lot_used_ticket_parking_boy() throws UnrecognizedTicketException, ParkingLotFullException {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
+
+        manager.setManagedParkingBoyList(Collections.singletonList(parkingBoy));
+
+        Car car = new Car();
+
+        //when
+        Ticket ticket = parkingBoy.parkCar(car);
+
+        parkingBoy.takeCar(ticket);
+        UnrecognizedTicketException exception = assertThrows(UnrecognizedTicketException.class, () -> manager.assignParkingBoyTakeCar(ticket, parkingBoy));
+
+        //then
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
+    }
 }
