@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyTest {
     @Test
-    void should_call_parking_lot_park_car_once_when_parking_boy_park_car_given_parking_lot_parking_boy_car() throws ParkingLotFullException {
+    void should_call_parking_lot_park_car_once_when_park_car_given_parking_lot_parking_boy_car() throws ParkingLotFullException {
         //given
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -22,7 +22,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_call_parking_lot_take_car_once_when_parking_boy_take_car_given_parking_lot_parking_boy_ticket() {
+    void should_call_parking_lot_take_car_once_when_take_car_given_parking_lot_parking_boy_ticket() {
         //given
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -34,7 +34,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_get_unrecognized_ticket_exception_when_parking_boy_take_car_given_parking_lot_invalid_ticket() {
+    void should_get_unrecognized_ticket_exception_when_take_car_given_parking_lot_invalid_ticket() {
        //given
        ParkingLot parkingLot = new ParkingLot(1);
        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -46,7 +46,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_get_unrecognized_ticket_exception_when_parking_boy_take_car_given_car_parked_parking_lot_used_ticket() throws UnrecognizedTicketException, ParkingLotFullException {
+    void should_get_unrecognized_ticket_exception_when_take_car_given_car_parked_parking_lot_used_ticket() throws UnrecognizedTicketException, ParkingLotFullException {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -60,7 +60,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_get_parking_lot_full_exception_when_parking_boy_park_car_given_parking_lot_capacity_one_car_two() throws ParkingLotFullException {
+    void should_get_parking_lot_full_exception_when_park_car_given_parking_lot_capacity_one_car_two() throws ParkingLotFullException {
 
         //given
         ParkingLot parkingLot = new ParkingLot(1);

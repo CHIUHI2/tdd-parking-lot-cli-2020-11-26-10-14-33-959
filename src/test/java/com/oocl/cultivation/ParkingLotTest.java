@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
     @Test
-    void should_return_ticket_when_parking_lot_park_car_given_parking_lot_car() {
+    void should_return_ticket_when_park_car_given_parking_lot_car() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
@@ -17,7 +17,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_park_multiple_car_when_parking_lot_park_car_given_parking_lot_capacity_three_car_two() {
+    void should_park_multiple_car_when_park_car_given_parking_lot_capacity_three_car_two() {
         //given
         ParkingLot parkingLot = new ParkingLot(3);
         Car car1 = new Car();
@@ -31,7 +31,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_park_one_car_when_parking_lot_park_car_given_parking_lot_capacity_one_car_two() {
+    void should_park_one_car_when_park_car_given_parking_lot_capacity_one_car_two() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car1 = new Car();
@@ -45,7 +45,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_car_when_parking_lot_take_car_given_car_parked_parking_lot_and_valid_ticket() {
+    void should_return_car_when_take_car_given_car_parked_parking_lot_and_valid_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
@@ -57,7 +57,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_null_when_parking_lot_take_car_given_car_parked_parking_lot_and_used_ticket() {
+    void should_return_null_when_take_car_given_car_parked_parking_lot_and_used_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
@@ -70,7 +70,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_null_when_parking_lot_take_car_given_car_parked_parking_lot_and_invalid_ticket() {
+    void should_return_null_when_take_car_given_car_parked_parking_lot_and_invalid_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
