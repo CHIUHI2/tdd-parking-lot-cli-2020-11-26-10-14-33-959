@@ -25,11 +25,11 @@ public class ParkingLot {
         return ticket;
     }
 
-    public boolean isFull() {
-        return this.ticketCarMapping.values().size() == this.capacity;
-    }
+    public boolean isFull() { return this.ticketCarMapping.values().size() == this.capacity; }
 
     public Integer getAvailableSpaceAmount() { return this.capacity - this.ticketCarMapping.values().size(); }
+
+    public Double getAvailabilityRate() { return this.getAvailableSpaceAmount().doubleValue() / this.capacity.doubleValue(); }
 
     public Car takeCar(Ticket ticket) {
         if (ticket == null) return null;
