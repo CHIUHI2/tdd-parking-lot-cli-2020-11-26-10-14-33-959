@@ -72,4 +72,18 @@ public class ParkingLotServiceManagerTest extends ParkingBoyTest {
         //then
         verify(parkingBoy, times(1)).takeCar(ticket);
     }
+
+    @Test
+    void should_not_call_parking_boy_take_car_when_assign_parking_boy_take_car_given_not_managed_parking_boy_manager_ticket() throws UnrecognizedTicketException {
+        //given
+        ParkingBoy parkingBoy = Mockito.mock(ParkingBoy.class);
+
+        Ticket ticket = new Ticket(new ParkingLot());
+
+        //when
+        manager.assignParkingBoyTakeCar(ticket, parkingBoy);
+
+        //then
+        verify(parkingBoy, times(0)).takeCar(ticket);
+    }
 }
