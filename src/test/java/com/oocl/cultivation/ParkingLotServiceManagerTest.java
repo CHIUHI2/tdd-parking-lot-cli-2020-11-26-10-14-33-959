@@ -40,4 +40,18 @@ public class ParkingLotServiceManagerTest extends ParkingBoyTest {
         verify(smartParkingBoy, times(1)).parkCar(car2);
         verify(superSmartParkingBoy, times(1)).parkCar(car3);
     }
+
+    @Test
+    void should_not_call_parking_boy_park_car_when_assign_parking_boy_park_car_given_not_managed_parking_boy_manager_car() throws ParkingLotFullException {
+        //given
+        ParkingBoy parkingBoy = Mockito.mock(ParkingBoy.class);
+
+        Car car = new Car();
+
+        //when
+        manager.assignParkingBoyParkCar(car, parkingBoy);
+
+        //then
+        verify(parkingBoy, times(0)).parkCar(car);
+    }
 }
