@@ -1,20 +1,24 @@
 package com.oocl.cultivation;
 
-public class ParkingBoy {
-    private ParkingLot managedParkingLot;
+import java.util.List;
 
-    ParkingBoy(ParkingLot managedParkingLot) {
-        this.managedParkingLot = managedParkingLot;
+public class ParkingBoy {
+    private List<ParkingLot> managedParkingLotList;
+
+    ParkingBoy(List<ParkingLot> managedParkingLotList) {
+        this.managedParkingLotList = managedParkingLotList;
     }
 
     public Ticket parkCar(Car car) throws ParkingLotFullException{
-        if(this.managedParkingLot.isFull()) throw new ParkingLotFullException();
+        ParkingLot availableParkingLot = this.managedParkingLotList.get(0);
 
-        return this.managedParkingLot.parkCar(car);
+        if(availableParkingLot.isFull()) throw new ParkingLotFullException();
+
+        return availableParkingLot.parkCar(car);
     }
 
     public Car takeCar(Ticket ticket) throws UnrecognizedTicketException{
-        Car car = this.managedParkingLot.takeCar(ticket);
+        Car car = this.managedParkingLotList.get(0).takeCar(ticket);
 
         if(car == null) throw new UnrecognizedTicketException();
 
