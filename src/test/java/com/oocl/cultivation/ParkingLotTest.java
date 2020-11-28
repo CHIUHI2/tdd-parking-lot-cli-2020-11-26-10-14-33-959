@@ -9,9 +9,12 @@ public class ParkingLotTest {
     void should_return_ticket_when_park_car_given_parking_lot_car() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
+
         Car car = new Car();
+
         //when
         Ticket ticket = parkingLot.parkCar(car);
+
         //then
         assertNotNull(ticket);
     }
@@ -20,11 +23,14 @@ public class ParkingLotTest {
     void should_park_multiple_car_when_park_car_given_parking_lot_capacity_three_car_two() {
         //given
         ParkingLot parkingLot = new ParkingLot(3);
+
         Car car1 = new Car();
         Car car2 = new Car();
+
         //when
         Ticket ticket1 = parkingLot.parkCar(car1);
         Ticket ticket2 = parkingLot.parkCar(car2);
+
         //then
         assertNotNull(ticket1);
         assertNotNull(ticket2);
@@ -34,11 +40,14 @@ public class ParkingLotTest {
     void should_park_one_car_when_park_car_given_parking_lot_capacity_one_car_two() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
+
         Car car1 = new Car();
         Car car2 = new Car();
+
         //when
         Ticket ticket1 = parkingLot.parkCar(car1);
         Ticket ticket2 = parkingLot.parkCar(car2);
+
         //then
         assertNotNull(ticket1);
         assertNull(ticket2);
@@ -48,10 +57,13 @@ public class ParkingLotTest {
     void should_return_car_when_take_car_given_car_parked_parking_lot_and_valid_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
+
         Car car = new Car();
+
         //when
         Ticket ticket = parkingLot.parkCar(car);
         Car carTaken = parkingLot.takeCar(ticket);
+
         //then
         assertEquals(car, carTaken);
     }
@@ -60,11 +72,15 @@ public class ParkingLotTest {
     void should_return_null_when_take_car_given_car_parked_parking_lot_and_used_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
+
         Car car = new Car();
+
         //when
         Ticket ticket = parkingLot.parkCar(car);
+
         parkingLot.takeCar(ticket);
         Car carTaken = parkingLot.takeCar(ticket);
+
         //then
         assertNull(carTaken);
     }
@@ -73,11 +89,16 @@ public class ParkingLotTest {
     void should_return_null_when_take_car_given_car_parked_parking_lot_and_invalid_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
+
         Car car = new Car();
+
         Ticket ticket = new Ticket();
+
         //when
         parkingLot.parkCar(car);
+
         Car carTaken = parkingLot.takeCar(ticket);
+
         //then
         assertNull(carTaken);
     }

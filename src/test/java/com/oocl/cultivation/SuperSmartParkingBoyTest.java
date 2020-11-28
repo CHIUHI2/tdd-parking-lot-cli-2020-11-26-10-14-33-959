@@ -22,14 +22,20 @@ public class SuperSmartParkingBoyTest extends ParkingBoyTest{
         //given
         ParkingLot parkingLotLowerAvailabilityRate = Mockito.mock(ParkingLot.class);
         when(parkingLotLowerAvailabilityRate.getAvailabilityRate()).thenReturn(0.3);
+
         ParkingLot parkingLotHigherAvailabilityRate = Mockito.mock(ParkingLot.class);
         when(parkingLotHigherAvailabilityRate.getAvailabilityRate()).thenReturn(0.5);
+
         ParkingLot parkingLotHighestAvailabilityRate = Mockito.mock(ParkingLot.class);
         when(parkingLotHighestAvailabilityRate.getAvailabilityRate()).thenReturn(0.8);
+
         parkingBoy.setManagedParkingLotList(Arrays.asList(parkingLotLowerAvailabilityRate, parkingLotHigherAvailabilityRate, parkingLotHighestAvailabilityRate));
+
         Car car = new Car();
+
         //when
         parkingBoy.parkCar(car);
+
         //then
         verify(parkingLotLowerAvailabilityRate, times(0)).parkCar(car);
         verify(parkingLotHigherAvailabilityRate, times(0)).parkCar(car);

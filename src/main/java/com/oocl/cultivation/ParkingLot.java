@@ -3,7 +3,7 @@ package com.oocl.cultivation;
 import java.util.HashMap;
 
 public class ParkingLot {
-    private Integer capacity;
+    private final Integer capacity;
     private HashMap<Ticket, Car> ticketCarMapping;
 
     ParkingLot() {
@@ -17,7 +17,7 @@ public class ParkingLot {
     }
 
     public Ticket parkCar(Car car) {
-        if (isFull() || car == null || this.ticketCarMapping.values().contains(car)) return null;
+        if (isFull() || car == null || this.ticketCarMapping.containsValue(car)) return null;
 
         Ticket ticket = new Ticket();
         this.ticketCarMapping.put(ticket, car);
