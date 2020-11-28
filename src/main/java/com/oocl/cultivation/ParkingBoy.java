@@ -1,6 +1,7 @@
 package com.oocl.cultivation;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ParkingBoy {
     private List<ParkingLot> managedParkingLotList;
@@ -10,18 +11,22 @@ public class ParkingBoy {
     }
 
     public Ticket parkCar(Car car) throws ParkingLotFullException{
-        ParkingLot availableParkingLot = this.managedParkingLotList.get(0);
+        Optional<ParkingLot> availableParkingLot = this.managedParkingLotList.stream()
+                .filter(parkingLot -> !parkingLot.isFull())
+                .findFirst();
 
-        if(availableParkingLot.isFull()) throw new ParkingLotFullException();
+        if(!availableParkingLot.isPresent()) throw new ParkingLotFullException();
 
-        return availableParkingLot.parkCar(car);
+        return availableParkingLot.get().parkCar(car);
     }
 
     public Car takeCar(Ticket ticket) throws UnrecognizedTicketException{
-        Car car = this.managedParkingLotList.get(0).takeCar(ticket);
+        Optional<ParkingLot> respectiveParkingLot = this.managedParkingLotList.stream()
+                .filter(parkingLot -> parkingLot.takeCar(ticket) != null)
+                .findFirst();
 
-        if(car == null) throw new UnrecognizedTicketException();
+        if(!respectiveParkingLot.isPresent()) throw new UnrecognizedTicketException();
 
-        return car;
+        return respectiveParkingLot.get().takeCar(ticket);
     }
 }
