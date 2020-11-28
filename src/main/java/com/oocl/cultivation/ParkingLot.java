@@ -19,7 +19,7 @@ public class ParkingLot {
     public Ticket parkCar(Car car) {
         if (isFull() || car == null || this.ticketCarMapping.containsValue(car)) return null;
 
-        Ticket ticket = new Ticket();
+        Ticket ticket = new Ticket(this);
         this.ticketCarMapping.put(ticket, car);
 
         return ticket;

@@ -38,13 +38,13 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_call_parking_lot_take_car_once_when_take_car_given_parking_lot_parking_boy_ticket() {
+    void should_call_parking_lot_take_car_once_when_take_car_given_managed_parking_lot_parking_boy_ticket() {
         //given
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
 
         parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
 
-        Ticket ticket = new Ticket();
+        Ticket ticket = new Ticket(parkingLot);
 
         //when
         assertThrows(UnrecognizedTicketException.class, () -> parkingBoy.takeCar(ticket));
@@ -74,7 +74,7 @@ class ParkingBoyTest {
 
         parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
 
-        Ticket ticket = new Ticket();
+        Ticket ticket = new Ticket(parkingLot);
 
         //when
         UnrecognizedTicketException exception = assertThrows(UnrecognizedTicketException.class, () -> parkingBoy.takeCar(ticket));

@@ -92,7 +92,7 @@ public class ParkingLotTest {
 
         Car car = new Car();
 
-        Ticket ticket = new Ticket();
+        Ticket ticket = new Ticket(parkingLot);
 
         //when
         parkingLot.parkCar(car);

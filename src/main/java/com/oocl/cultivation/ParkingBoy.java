@@ -29,12 +29,15 @@ public class ParkingBoy {
     }
 
     public Car takeCar(Ticket ticket) throws UnrecognizedTicketException {
-        Optional<ParkingLot> respectiveParkingLot = this.managedParkingLotList.stream()
-                .filter(parkingLot -> parkingLot.takeCar(ticket) != null)
-                .findFirst();
+        if(ticket == null || !isManagedParkingLot(ticket.getParkingLot())) return null;
 
-        if (!respectiveParkingLot.isPresent()) throw new UnrecognizedTicketException();
+        ParkingLot parkingLot = ticket.getParkingLot();
+        Car car = parkingLot.takeCar(ticket);
 
-        return respectiveParkingLot.get().takeCar(ticket);
+        if (car == null) throw new UnrecognizedTicketException();
+
+        return car;
     }
+
+    private boolean isManagedParkingLot(ParkingLot parkingLot) { return this.managedParkingLotList.contains(parkingLot); }
 }
