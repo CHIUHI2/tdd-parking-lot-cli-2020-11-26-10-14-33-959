@@ -1,14 +1,17 @@
 package com.oocl.cultivation;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class ParkingBoy {
     private List<ParkingLot> managedParkingLotList;
 
-    ParkingBoy(List<ParkingLot> managedParkingLotList) {
-        this.managedParkingLotList = managedParkingLotList;
+    ParkingBoy() {
+        this.managedParkingLotList = new ArrayList<>();
     }
+
+    public void setManagedParkingLotList(List<ParkingLot> managedParkingLotList) { this.managedParkingLotList = managedParkingLotList; }
 
     public Ticket parkCar(Car car) throws ParkingLotFullException {
         Optional<ParkingLot> availableParkingLot = this.managedParkingLotList.stream()
