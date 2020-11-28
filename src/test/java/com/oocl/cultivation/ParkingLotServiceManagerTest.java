@@ -2,6 +2,7 @@ package com.oocl.cultivation;
 
 import com.oocl.cultivation.Exception.ParkingLotFullException;
 import com.oocl.cultivation.Exception.UnrecognizedTicketException;
+import net.bytebuddy.implementation.bind.annotation.Super;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -128,5 +129,34 @@ public class ParkingLotServiceManagerTest extends ParkingBoyTest {
 
         //then
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
+    }
+
+    @Test
+    void should_get_parking_lot_full_exception_when_assign_parking_boy_park_car_given_parking_lot_full_car_all_kinds_of_managed_parking_boy() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(0);
+
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
+
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
+        smartParkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
+
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy();
+        superSmartParkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
+
+        manager.setManagedParkingBoyList(Arrays.asList(parkingBoy, smartParkingBoy, superSmartParkingBoy));
+
+        Car car = new Car();
+
+        //when
+        ParkingLotFullException exception1 = assertThrows(ParkingLotFullException.class, () -> manager.assignParkingBoyParkCar(car, parkingBoy));
+        ParkingLotFullException exception2 = assertThrows(ParkingLotFullException.class, () -> manager.assignParkingBoyParkCar(car, smartParkingBoy));
+        ParkingLotFullException exception3 = assertThrows(ParkingLotFullException.class, () -> manager.assignParkingBoyParkCar(car, superSmartParkingBoy));
+
+        //then
+        assertEquals(new ParkingLotFullException().getMessage(), exception1.getMessage());
+        assertEquals(new ParkingLotFullException().getMessage(), exception2.getMessage());
+        assertEquals(new ParkingLotFullException().getMessage(), exception3.getMessage());
     }
 }
