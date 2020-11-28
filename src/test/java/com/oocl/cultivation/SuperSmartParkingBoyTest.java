@@ -1,5 +1,6 @@
 package com.oocl.cultivation;
 
+import com.oocl.cultivation.Exception.ParkingLotFullException;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 

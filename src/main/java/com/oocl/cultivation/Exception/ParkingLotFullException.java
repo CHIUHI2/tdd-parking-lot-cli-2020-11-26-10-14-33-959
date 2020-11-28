@@ -1,4 +1,4 @@
-package com.oocl.cultivation;
+package com.oocl.cultivation.Exception;
 
 public class ParkingLotFullException extends Exception{
     ParkingLotFullException(){

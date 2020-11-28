@@ -1,5 +1,8 @@
 package com.oocl.cultivation;
 
+import com.oocl.cultivation.Exception.ParkingLotFullException;
+import com.oocl.cultivation.Exception.UnrecognizedTicketException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
