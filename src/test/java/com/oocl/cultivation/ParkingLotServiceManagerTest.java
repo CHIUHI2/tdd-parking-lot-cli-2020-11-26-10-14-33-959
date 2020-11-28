@@ -8,6 +8,8 @@ import org.mockito.Mockito;
 import java.util.Arrays;
 import java.util.Collections;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -85,5 +87,24 @@ public class ParkingLotServiceManagerTest extends ParkingBoyTest {
 
         //then
         verify(parkingBoy, times(0)).takeCar(ticket);
+    }
+
+    @Test
+    void should_get_unrecognized_ticket_exception_when_assign_parking_boy_take_car_given_parking_lot_invalid_ticket_managed_parking_boy() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
+
+        manager.setManagedParkingBoyList(Collections.singletonList(parkingBoy));
+
+        Ticket ticket = new Ticket(parkingLot);
+
+        //when
+        UnrecognizedTicketException exception = assertThrows(UnrecognizedTicketException.class, () -> manager.assignParkingBoyTakeCar(ticket, parkingBoy));
+
+        //then
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
 }
