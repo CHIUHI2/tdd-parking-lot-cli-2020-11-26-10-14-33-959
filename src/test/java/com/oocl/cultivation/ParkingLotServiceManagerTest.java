@@ -1,10 +1,12 @@
 package com.oocl.cultivation;
 
 import com.oocl.cultivation.Exception.ParkingLotFullException;
+import com.oocl.cultivation.Exception.UnrecognizedTicketException;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -53,5 +55,21 @@ public class ParkingLotServiceManagerTest extends ParkingBoyTest {
 
         //then
         verify(parkingBoy, times(0)).parkCar(car);
+    }
+
+    @Test
+    void should_call_parking_boy_take_car_when_assign_parking_boy_take_car_given_managed_parking_boy_manager_ticket() throws UnrecognizedTicketException {
+        //given
+        ParkingBoy parkingBoy = Mockito.mock(ParkingBoy.class);
+
+        manager.setManagedParkingBoyList(Collections.singletonList(parkingBoy));
+
+        Ticket ticket = new Ticket(new ParkingLot());
+
+        //when
+        manager.assignParkingBoyTakeCar(ticket, parkingBoy);
+
+        //then
+        verify(parkingBoy, times(1)).takeCar(ticket);
     }
 }
