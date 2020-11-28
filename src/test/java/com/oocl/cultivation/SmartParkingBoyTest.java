@@ -26,7 +26,7 @@ public class SmartParkingBoyTest extends ParkingBoyTest{
         when(parkingLotMoreSpace.getAvailableSpaceAmount()).thenReturn(2);
         ParkingLot parkingLotMostSpace = Mockito.mock(ParkingLot.class);
         when(parkingLotMostSpace.getAvailableSpaceAmount()).thenReturn(3);
-        parkingBoy.setManagedParkingLotList(Arrays.asList(parkingLotLessSpace, parkingLotMoreSpace));
+        parkingBoy.setManagedParkingLotList(Arrays.asList(parkingLotLessSpace, parkingLotMoreSpace, parkingLotMostSpace));
         Car car = new Car();
         //when
         parkingBoy.parkCar(car);
