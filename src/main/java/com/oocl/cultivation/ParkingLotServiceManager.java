@@ -25,6 +25,8 @@ public class ParkingLotServiceManager extends ParkingBoy {
     }
 
     public Car assignParkingBoyTakeCar(Ticket ticket, ParkingBoy parkingBoy) throws UnrecognizedTicketException {
+        if(!isManagedParkingBoy(parkingBoy)) return null;
+
         return parkingBoy.takeCar(ticket);
     }
 
