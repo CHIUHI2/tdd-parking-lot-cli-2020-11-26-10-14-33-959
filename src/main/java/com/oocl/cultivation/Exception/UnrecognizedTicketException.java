@@ -1,7 +1,7 @@
 package com.oocl.cultivation.Exception;
 
 public class UnrecognizedTicketException extends Exception{
-    UnrecognizedTicketException(){
+    public UnrecognizedTicketException(){
         super("Unrecognized parking ticket.");
     }
 }

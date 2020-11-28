@@ -1,7 +1,7 @@
 package com.oocl.cultivation.Exception;
 
 public class ParkingLotFullException extends Exception{
-    ParkingLotFullException(){
+    public ParkingLotFullException(){
         super("Not enough position.");
     }
 }
