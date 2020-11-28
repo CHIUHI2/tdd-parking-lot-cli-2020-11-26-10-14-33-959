@@ -94,4 +94,18 @@ class ParkingBoyTest {
         assertNotNull(ticket1);
         assertNotNull(ticket2);
     }
+
+    @Test
+    void should_park_one_car_when_park_car_given_two_parking_lot_first_full_second_available_car_parking_boy() throws ParkingLotFullException {
+        //given
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        parkingLotList.add(new ParkingLot(0));
+        parkingLotList.add(new ParkingLot(1));
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLotList);
+        Car car = new Car();
+        //when
+        Ticket ticket = parkingBoy.parkCar(car);
+        //then
+        assertNotNull(ticket);
+    }
 }
