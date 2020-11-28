@@ -5,7 +5,7 @@ import com.oocl.cultivation.Exception.ParkingLotFullException;
 import java.util.Comparator;
 import java.util.Optional;
 
-public class SmartParkingBoy extends ParkingBoy{
+public class SmartParkingBoy extends ParkingBoy {
     SmartParkingBoy() {
         super();
     }

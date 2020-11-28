@@ -20,7 +20,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_park_multiple_car_when_park_car_given_parking_lot_capacity_three_car_two() {
+    void should_return_two_ticket_when_park_car_given_parking_lot_capacity_three_car_two() {
         //given
         ParkingLot parkingLot = new ParkingLot(3);
 
@@ -37,7 +37,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_park_one_car_when_park_car_given_parking_lot_capacity_one_car_two() {
+    void should_return_one_ticket_one_null_when_park_car_given_parking_lot_capacity_one_car_two() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
 

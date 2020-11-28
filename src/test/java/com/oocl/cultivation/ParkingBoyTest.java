@@ -103,18 +103,16 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_get_parking_lot_full_exception_when_park_car_given_parking_lot_capacity_one_car_two_parking_boy() throws ParkingLotFullException {
+    void should_get_parking_lot_full_exception_when_park_car_given_parking_lot_capacity_one_car_two_parking_boy() {
         //given
-        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingLot parkingLot = new ParkingLot(0);
 
         parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
 
-        Car car1 = new Car();
-        Car car2 = new Car();
+        Car car = new Car();
 
         //when
-        parkingBoy.parkCar(car1);
-        ParkingLotFullException exception = assertThrows(ParkingLotFullException.class, () -> parkingBoy.parkCar(car2));
+        ParkingLotFullException exception = assertThrows(ParkingLotFullException.class, () -> parkingBoy.parkCar(car));
 
         //then
         assertEquals("Not enough position.", exception.getMessage());

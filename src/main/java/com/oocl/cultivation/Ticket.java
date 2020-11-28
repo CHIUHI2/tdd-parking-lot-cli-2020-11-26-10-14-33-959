@@ -7,5 +7,7 @@ public class Ticket {
         this.parkingLot = parkingLot;
     }
 
-    public ParkingLot getParkingLot() { return parkingLot; }
+    public ParkingLot getParkingLot() {
+        return parkingLot;
+    }
 }

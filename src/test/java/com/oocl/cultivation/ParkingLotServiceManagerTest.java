@@ -2,7 +2,6 @@ package com.oocl.cultivation;
 
 import com.oocl.cultivation.Exception.ParkingLotFullException;
 import com.oocl.cultivation.Exception.UnrecognizedTicketException;
-import net.bytebuddy.implementation.bind.annotation.Super;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -61,7 +60,7 @@ public class ParkingLotServiceManagerTest extends ParkingBoyTest {
     }
 
     @Test
-    void should_call_parking_boy_take_car_when_assign_parking_boy_take_car_given_managed_parking_boy_manager_ticket() throws UnrecognizedTicketException {
+    void should_call_parking_boy_take_car_once_when_assign_parking_boy_take_car_given_managed_parking_boy_manager_ticket() throws UnrecognizedTicketException {
         //given
         ParkingBoy parkingBoy = Mockito.mock(ParkingBoy.class);
 
@@ -110,7 +109,7 @@ public class ParkingLotServiceManagerTest extends ParkingBoyTest {
     }
 
     @Test
-    void should_get_unrecognized_ticket_exception_when_take_car_given_car_parked_parking_lot_used_ticket_parking_boy() throws UnrecognizedTicketException, ParkingLotFullException {
+    void should_get_unrecognized_ticket_exception_when_assign_parking_boy_take_car_given_car_parked_parking_lot_used_ticket_parking_boy() throws UnrecognizedTicketException, ParkingLotFullException {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
 
@@ -155,8 +154,8 @@ public class ParkingLotServiceManagerTest extends ParkingBoyTest {
         ParkingLotFullException exception3 = assertThrows(ParkingLotFullException.class, () -> manager.assignParkingBoyParkCar(car, superSmartParkingBoy));
 
         //then
-        assertEquals(new ParkingLotFullException().getMessage(), exception1.getMessage());
-        assertEquals(new ParkingLotFullException().getMessage(), exception2.getMessage());
-        assertEquals(new ParkingLotFullException().getMessage(), exception3.getMessage());
+        assertEquals("Not enough position.", exception1.getMessage());
+        assertEquals("Not enough position.", exception2.getMessage());
+        assertEquals("Not enough position.", exception3.getMessage());
     }
 }

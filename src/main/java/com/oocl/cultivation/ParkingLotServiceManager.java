@@ -19,16 +19,18 @@ public class ParkingLotServiceManager extends ParkingBoy {
     }
 
     public Ticket assignParkingBoyParkCar(Car car, ParkingBoy parkingBoy) throws ParkingLotFullException {
-        if(car == null || parkingBoy == null || !isManagedParkingBoy(parkingBoy)) return null;
+        if (car == null || parkingBoy == null || !isManagedParkingBoy(parkingBoy)) return null;
 
         return parkingBoy.parkCar(car);
     }
 
     public Car assignParkingBoyTakeCar(Ticket ticket, ParkingBoy parkingBoy) throws UnrecognizedTicketException {
-        if(ticket == null || parkingBoy == null || !isManagedParkingBoy(parkingBoy)) return null;
+        if (ticket == null || parkingBoy == null || !isManagedParkingBoy(parkingBoy)) return null;
 
         return parkingBoy.takeCar(ticket);
     }
 
-    private boolean isManagedParkingBoy(ParkingBoy parkingBoy) { return this.managedParkingBoyList.contains(parkingBoy); }
+    private boolean isManagedParkingBoy(ParkingBoy parkingBoy) {
+        return this.managedParkingBoyList.contains(parkingBoy);
+    }
 }

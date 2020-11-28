@@ -10,7 +10,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class SmartParkingBoyTest extends ParkingBoyTest{
+public class SmartParkingBoyTest extends ParkingBoyTest {
     private final SmartParkingBoy parkingBoy = this.getParkingBoy();
 
     @Override

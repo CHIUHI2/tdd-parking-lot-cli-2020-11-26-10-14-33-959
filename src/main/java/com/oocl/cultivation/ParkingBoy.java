@@ -14,9 +14,13 @@ public class ParkingBoy {
         this.managedParkingLotList = new ArrayList<>();
     }
 
-    public void setManagedParkingLotList(List<ParkingLot> managedParkingLotList) { this.managedParkingLotList = managedParkingLotList; }
+    public void setManagedParkingLotList(List<ParkingLot> managedParkingLotList) {
+        this.managedParkingLotList = managedParkingLotList;
+    }
 
-    public List<ParkingLot> getManagedParkingLotList() { return managedParkingLotList; }
+    public List<ParkingLot> getManagedParkingLotList() {
+        return managedParkingLotList;
+    }
 
     public Ticket parkCar(Car car) throws ParkingLotFullException {
         Optional<ParkingLot> availableParkingLot = this.managedParkingLotList.stream()
@@ -29,7 +33,7 @@ public class ParkingBoy {
     }
 
     public Car takeCar(Ticket ticket) throws UnrecognizedTicketException {
-        if(ticket == null || !isManagedParkingLot(ticket.getParkingLot())) return null;
+        if (ticket == null || !isManagedParkingLot(ticket.getParkingLot())) return null;
 
         ParkingLot parkingLot = ticket.getParkingLot();
         Car car = parkingLot.takeCar(ticket);
@@ -39,5 +43,7 @@ public class ParkingBoy {
         return car;
     }
 
-    private boolean isManagedParkingLot(ParkingLot parkingLot) { return this.managedParkingLotList.contains(parkingLot); }
+    private boolean isManagedParkingLot(ParkingLot parkingLot) {
+        return this.managedParkingLotList.contains(parkingLot);
+    }
 }
