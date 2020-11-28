@@ -17,7 +17,7 @@ public class ParkingLot {
     }
 
     public Ticket parkCar(Car car) {
-        if(isFull() || car == null || this.ticketCarMapping.values().contains(car)) return null;
+        if (isFull() || car == null || this.ticketCarMapping.values().contains(car)) return null;
 
         Ticket ticket = new Ticket();
         this.ticketCarMapping.put(ticket, car);
@@ -30,7 +30,7 @@ public class ParkingLot {
     }
 
     public Car takeCar(Ticket ticket) {
-        if(ticket == null) return null;
+        if (ticket == null) return null;
 
         Car car = this.ticketCarMapping.get(ticket);
         this.ticketCarMapping.remove(ticket);

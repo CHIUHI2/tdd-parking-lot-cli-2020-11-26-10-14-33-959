@@ -10,22 +10,22 @@ public class ParkingBoy {
         this.managedParkingLotList = managedParkingLotList;
     }
 
-    public Ticket parkCar(Car car) throws ParkingLotFullException{
+    public Ticket parkCar(Car car) throws ParkingLotFullException {
         Optional<ParkingLot> availableParkingLot = this.managedParkingLotList.stream()
                 .filter(parkingLot -> !parkingLot.isFull())
                 .findFirst();
 
-        if(!availableParkingLot.isPresent()) throw new ParkingLotFullException();
+        if (!availableParkingLot.isPresent()) throw new ParkingLotFullException();
 
         return availableParkingLot.get().parkCar(car);
     }
 
-    public Car takeCar(Ticket ticket) throws UnrecognizedTicketException{
+    public Car takeCar(Ticket ticket) throws UnrecognizedTicketException {
         Optional<ParkingLot> respectiveParkingLot = this.managedParkingLotList.stream()
                 .filter(parkingLot -> parkingLot.takeCar(ticket) != null)
                 .findFirst();
 
-        if(!respectiveParkingLot.isPresent()) throw new UnrecognizedTicketException();
+        if (!respectiveParkingLot.isPresent()) throw new UnrecognizedTicketException();
 
         return respectiveParkingLot.get().takeCar(ticket);
     }
