@@ -18,6 +18,10 @@ public class ParkingLotServiceManager extends ParkingBoy {
     }
 
     public Ticket assignParkingBoyParkCar(Car car, ParkingBoy parkingBoy) throws ParkingLotFullException {
+        if(!isManagedParkingBoy(parkingBoy)) return null;
+
         return parkingBoy.parkCar(car);
     }
+
+    private boolean isManagedParkingBoy(ParkingBoy parkingBoy) { return this.managedParkingBoyList.contains(parkingBoy); }
 }
