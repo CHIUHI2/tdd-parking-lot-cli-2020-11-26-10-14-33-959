@@ -13,6 +13,8 @@ public class ParkingBoy {
 
     public void setManagedParkingLotList(List<ParkingLot> managedParkingLotList) { this.managedParkingLotList = managedParkingLotList; }
 
+    public List<ParkingLot> getManagedParkingLotList() { return managedParkingLotList; }
+
     public Ticket parkCar(Car car) throws ParkingLotFullException {
         Optional<ParkingLot> availableParkingLot = this.managedParkingLotList.stream()
                 .filter(parkingLot -> !parkingLot.isFull())
