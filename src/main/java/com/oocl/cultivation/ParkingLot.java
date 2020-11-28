@@ -12,9 +12,7 @@ public class ParkingLot {
     }
 
     public Ticket parkCar(Car car) {
-        if(isFull()) {
-            return null;
-        }
+        if(isFull()) return null;
 
         Ticket ticket = new Ticket();
         ticketCarMapping.put(ticket, car);

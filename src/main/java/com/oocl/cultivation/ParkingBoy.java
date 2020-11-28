@@ -2,7 +2,7 @@ package com.oocl.cultivation;
 
 public class ParkingBoy {
     public Ticket parkCar(Car car, ParkingLot parkingLot) throws ParkingLotFullException{
-        if(parkingLot.isFull()) { throw new ParkingLotFullException(); }
+        if(parkingLot.isFull()) throw new ParkingLotFullException();
 
         return parkingLot.parkCar(car);
     }
@@ -10,7 +10,7 @@ public class ParkingBoy {
     public Car takeCar(Ticket ticket, ParkingLot parkingLot) throws UnrecognizedTicketException{
         Car car = parkingLot.takeCar(ticket);
 
-        if(car == null) { throw new UnrecognizedTicketException(); }
+        if(car == null) throw new UnrecognizedTicketException();
 
         return car;
     }
