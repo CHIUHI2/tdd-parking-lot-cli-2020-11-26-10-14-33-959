@@ -2,6 +2,7 @@ package com.oocl.cultivation;
 
 import com.oocl.cultivation.Exception.ParkingLotFullException;
 import com.oocl.cultivation.Exception.UnrecognizedTicketException;
+import com.oocl.cultivation.Strategy.StandardParkingBoyStrategy;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-public class ParkingLotServiceManagerTest extends ParkingBoyTest {
+public class ParkingLotServiceManagerTest extends StandardParkingBoyTest {
     private final ParkingLotServiceManager manager = this.getParkingBoy();
 
     @Override
@@ -22,27 +23,19 @@ public class ParkingLotServiceManagerTest extends ParkingBoyTest {
     }
 
     @Test
-    void should_call_each_parking_boy_park_car_once_when_assign_parking_boy_park_car_given_all_kinds_of_managed_parking_boy_manager_car() throws ParkingLotFullException {
+    void should_call_parking_boy_park_car_once_when_assign_parking_boy_park_car_given_managed_parking_boy_manager_car() throws ParkingLotFullException {
         //given
         ParkingBoy parkingBoy = Mockito.mock(ParkingBoy.class);
-        SmartParkingBoy smartParkingBoy = Mockito.mock(SmartParkingBoy.class);
-        SuperSmartParkingBoy superSmartParkingBoy = Mockito.mock(SuperSmartParkingBoy.class);
 
-        manager.setManagedParkingBoyList(Arrays.asList(parkingBoy, smartParkingBoy, superSmartParkingBoy));
+        manager.setManagedParkingBoyList(Collections.singletonList(parkingBoy));
 
-        Car car1 = new Car();
-        Car car2 = new Car();
-        Car car3 = new Car();
+        Car car = new Car();
 
         //when
-        manager.assignParkingBoyParkCar(car1, parkingBoy);
-        manager.assignParkingBoyParkCar(car2, smartParkingBoy);
-        manager.assignParkingBoyParkCar(car3, superSmartParkingBoy);
+        manager.assignParkingBoyParkCar(car, parkingBoy);
 
         //then
-        verify(parkingBoy, times(1)).parkCar(car1);
-        verify(smartParkingBoy, times(1)).parkCar(car2);
-        verify(superSmartParkingBoy, times(1)).parkCar(car3);
+        verify(parkingBoy, times(1)).parkCar(car);
     }
 
     @Test
@@ -94,7 +87,7 @@ public class ParkingLotServiceManagerTest extends ParkingBoyTest {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
 
-        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingBoy parkingBoy = new ParkingBoy(new StandardParkingBoyStrategy());
         parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
 
         manager.setManagedParkingBoyList(Collections.singletonList(parkingBoy));
@@ -113,7 +106,7 @@ public class ParkingLotServiceManagerTest extends ParkingBoyTest {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
 
-        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingBoy parkingBoy = new ParkingBoy(new StandardParkingBoyStrategy());
         parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
 
         manager.setManagedParkingBoyList(Collections.singletonList(parkingBoy));
@@ -135,8 +128,8 @@ public class ParkingLotServiceManagerTest extends ParkingBoyTest {
         //given
         ParkingLot parkingLot = new ParkingLot(0);
 
-        ParkingBoy parkingBoy = new ParkingBoy();
-        parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy();
+        standardParkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
 
         SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
         smartParkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
@@ -144,12 +137,12 @@ public class ParkingLotServiceManagerTest extends ParkingBoyTest {
         SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy();
         superSmartParkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
 
-        manager.setManagedParkingBoyList(Arrays.asList(parkingBoy, smartParkingBoy, superSmartParkingBoy));
+        manager.setManagedParkingBoyList(Arrays.asList(standardParkingBoy, smartParkingBoy, superSmartParkingBoy));
 
         Car car = new Car();
 
         //when
-        ParkingLotFullException exception1 = assertThrows(ParkingLotFullException.class, () -> manager.assignParkingBoyParkCar(car, parkingBoy));
+        ParkingLotFullException exception1 = assertThrows(ParkingLotFullException.class, () -> manager.assignParkingBoyParkCar(car, standardParkingBoy));
         ParkingLotFullException exception2 = assertThrows(ParkingLotFullException.class, () -> manager.assignParkingBoyParkCar(car, smartParkingBoy));
         ParkingLotFullException exception3 = assertThrows(ParkingLotFullException.class, () -> manager.assignParkingBoyParkCar(car, superSmartParkingBoy));
 

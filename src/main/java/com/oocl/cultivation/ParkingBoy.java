@@ -2,6 +2,7 @@ package com.oocl.cultivation;
 
 import com.oocl.cultivation.Exception.ParkingLotFullException;
 import com.oocl.cultivation.Exception.UnrecognizedTicketException;
+import com.oocl.cultivation.Strategy.ParkingBoyStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +10,10 @@ import java.util.Optional;
 
 public class ParkingBoy {
     private List<ParkingLot> managedParkingLotList;
+    private ParkingBoyStrategy parkingBoyStrategy;
 
-    ParkingBoy() {
+    ParkingBoy(ParkingBoyStrategy parkingBoyStrategy) {
+        this.parkingBoyStrategy = parkingBoyStrategy;
         this.managedParkingLotList = new ArrayList<>();
     }
 
@@ -18,14 +21,8 @@ public class ParkingBoy {
         this.managedParkingLotList = managedParkingLotList;
     }
 
-    public List<ParkingLot> getManagedParkingLotList() {
-        return managedParkingLotList;
-    }
-
     public Ticket parkCar(Car car) throws ParkingLotFullException {
-        Optional<ParkingLot> availableParkingLot = this.managedParkingLotList.stream()
-                .filter(parkingLot -> !parkingLot.isFull())
-                .findFirst();
+        Optional<ParkingLot> availableParkingLot = this.parkingBoyStrategy.getAvailableParkingLot(this.managedParkingLotList);
 
         if (!availableParkingLot.isPresent()) throw new ParkingLotFullException();
 
