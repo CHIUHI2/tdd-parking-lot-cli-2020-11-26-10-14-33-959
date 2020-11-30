@@ -64,7 +64,7 @@ public class ParkingLotServiceManagerTest extends StandardParkingBoyTest {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
 
-        ParkingBoy parkingBoy = new ParkingBoy(new StandardParkingBoyStrategy());
+        StandardParkingBoy parkingBoy = new StandardParkingBoy();
         parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
 
         manager.setManagedParkingBoyList(Collections.singletonList(parkingBoy));
@@ -83,7 +83,7 @@ public class ParkingLotServiceManagerTest extends StandardParkingBoyTest {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
 
-        ParkingBoy parkingBoy = new ParkingBoy(new StandardParkingBoyStrategy());
+        StandardParkingBoy parkingBoy = new StandardParkingBoy();
         parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
 
         manager.setManagedParkingBoyList(Collections.singletonList(parkingBoy));

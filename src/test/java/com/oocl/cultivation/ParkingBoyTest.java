@@ -2,7 +2,6 @@ package com.oocl.cultivation;
 
 import com.oocl.cultivation.Exception.ParkingLotFullException;
 import com.oocl.cultivation.Exception.UnrecognizedTicketException;
-import com.oocl.cultivation.Strategy.StandardParkingBoyStrategy;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -17,7 +16,7 @@ class ParkingBoyTest {
     private final ParkingBoy parkingBoy = this.getParkingBoy();
 
     protected ParkingBoy getParkingBoy() {
-        return new ParkingBoy(new StandardParkingBoyStrategy());
+        return new StandardParkingBoy();
     }
 
     @Test

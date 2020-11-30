@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ParkingBoy {
+public abstract class ParkingBoy {
     private List<ParkingLot> managedParkingLotList;
     private ParkingBoyStrategy parkingBoyStrategy;
 
