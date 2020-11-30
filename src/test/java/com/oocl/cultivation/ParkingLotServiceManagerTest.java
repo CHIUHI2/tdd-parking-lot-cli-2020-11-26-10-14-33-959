@@ -2,7 +2,6 @@ package com.oocl.cultivation;
 
 import com.oocl.cultivation.Exception.ParkingLotFullException;
 import com.oocl.cultivation.Exception.UnrecognizedTicketException;
-import com.oocl.cultivation.Strategy.StandardParkingBoyStrategy;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -65,7 +64,7 @@ public class ParkingLotServiceManagerTest extends StandardParkingBoyTest {
         ParkingLot parkingLot = new ParkingLot(1);
 
         StandardParkingBoy parkingBoy = new StandardParkingBoy();
-        parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
+        parkingBoy.addManagedParkingLot(parkingLot);
 
         manager.setManagedParkingBoyList(Collections.singletonList(parkingBoy));
 
@@ -84,7 +83,7 @@ public class ParkingLotServiceManagerTest extends StandardParkingBoyTest {
         ParkingLot parkingLot = new ParkingLot(1);
 
         StandardParkingBoy parkingBoy = new StandardParkingBoy();
-        parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
+        parkingBoy.addManagedParkingLot(parkingLot);
 
         manager.setManagedParkingBoyList(Collections.singletonList(parkingBoy));
 
@@ -106,13 +105,13 @@ public class ParkingLotServiceManagerTest extends StandardParkingBoyTest {
         ParkingLot parkingLot = new ParkingLot(0);
 
         StandardParkingBoy standardParkingBoy = new StandardParkingBoy();
-        standardParkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
+        standardParkingBoy.addManagedParkingLot(parkingLot);
 
         SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
-        smartParkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
+        smartParkingBoy.addManagedParkingLot(parkingLot);
 
         SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy();
-        superSmartParkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
+        superSmartParkingBoy.addManagedParkingLot(parkingLot);
 
         manager.setManagedParkingBoyList(Arrays.asList(standardParkingBoy, smartParkingBoy, superSmartParkingBoy));
 

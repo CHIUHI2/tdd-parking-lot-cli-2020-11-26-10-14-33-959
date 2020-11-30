@@ -4,8 +4,6 @@ import com.oocl.cultivation.Exception.ParkingLotFullException;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.Arrays;
-
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -23,14 +21,15 @@ public class SuperSmartParkingBoyTest extends ParkingBoyTest {
         //given
         ParkingLot parkingLotLowerAvailabilityRate = Mockito.mock(ParkingLot.class);
         when(parkingLotLowerAvailabilityRate.getAvailabilityRate()).thenReturn(0.3);
+        parkingBoy.addManagedParkingLot(parkingLotLowerAvailabilityRate);
 
         ParkingLot parkingLotHigherAvailabilityRate = Mockito.mock(ParkingLot.class);
         when(parkingLotHigherAvailabilityRate.getAvailabilityRate()).thenReturn(0.5);
+        parkingBoy.addManagedParkingLot(parkingLotHigherAvailabilityRate);
 
         ParkingLot parkingLotHighestAvailabilityRate = Mockito.mock(ParkingLot.class);
         when(parkingLotHighestAvailabilityRate.getAvailabilityRate()).thenReturn(0.8);
-
-        parkingBoy.setManagedParkingLotList(Arrays.asList(parkingLotLowerAvailabilityRate, parkingLotHigherAvailabilityRate, parkingLotHighestAvailabilityRate));
+        parkingBoy.addManagedParkingLot(parkingLotHighestAvailabilityRate);
 
         Car car = new Car();
 

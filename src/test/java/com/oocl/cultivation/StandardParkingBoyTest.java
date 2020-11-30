@@ -18,7 +18,8 @@ public class StandardParkingBoyTest extends ParkingBoyTest{
     @Test
     void should_park_two_cars_when_park_car_given_two_parking_lot_each_capacity_one_car_two_parking_boy() throws ParkingLotFullException {
         //given
-        parkingBoy.setManagedParkingLotList(Arrays.asList(new ParkingLot(1), new ParkingLot(1)));
+        parkingBoy.addManagedParkingLot(new ParkingLot(1));
+        parkingBoy.addManagedParkingLot(new ParkingLot(1));
 
         Car car1 = new Car();
         Car car2 = new Car();
@@ -35,7 +36,8 @@ public class StandardParkingBoyTest extends ParkingBoyTest{
     @Test
     void should_park_one_car_when_park_car_given_two_parking_lot_first_full_second_available_car_parking_boy() throws ParkingLotFullException {
         //given
-        parkingBoy.setManagedParkingLotList(Arrays.asList(new ParkingLot(0), new ParkingLot(1)));
+        parkingBoy.addManagedParkingLot(new ParkingLot(0));
+        parkingBoy.addManagedParkingLot(new ParkingLot(1));
 
         Car car = new Car();
 

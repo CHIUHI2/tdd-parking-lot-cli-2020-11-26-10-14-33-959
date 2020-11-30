@@ -9,6 +9,7 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -20,11 +21,23 @@ class ParkingBoyTest {
     }
 
     @Test
+    void should_add_parking_boy_when_add_managed_parking_lot_given_parking_boy_parking_lot() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+
+        //when
+        parkingBoy.addManagedParkingLot(parkingLot);
+
+        //then
+        assertTrue(parkingBoy.getManagedParkingLotList().contains(parkingLot));
+    }
+
+    @Test
     void should_call_parking_lot_park_car_once_when_park_car_given_parking_lot_parking_boy_car() throws ParkingLotFullException {
         //given
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
 
-        parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
+        parkingBoy.addManagedParkingLot(parkingLot);
 
         Car car = new Car();
 
@@ -40,7 +53,7 @@ class ParkingBoyTest {
         //given
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
 
-        parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
+        parkingBoy.addManagedParkingLot(parkingLot);
 
         Ticket ticket = new Ticket(parkingLot);
 
@@ -70,7 +83,7 @@ class ParkingBoyTest {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
 
-        parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
+        parkingBoy.addManagedParkingLot(parkingLot);
 
         Ticket ticket = new Ticket(parkingLot);
 
@@ -86,7 +99,7 @@ class ParkingBoyTest {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
 
-        parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
+        parkingBoy.addManagedParkingLot(parkingLot);
 
         Car car = new Car();
 
@@ -105,7 +118,7 @@ class ParkingBoyTest {
         //given
         ParkingLot parkingLot = new ParkingLot(0);
 
-        parkingBoy.setManagedParkingLotList(Collections.singletonList(parkingLot));
+        parkingBoy.addManagedParkingLot(parkingLot);
 
         Car car = new Car();
 

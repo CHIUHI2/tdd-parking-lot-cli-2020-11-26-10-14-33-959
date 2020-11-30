@@ -17,8 +17,12 @@ public abstract class ParkingBoy {
         this.managedParkingLotList = new ArrayList<>();
     }
 
-    public void setManagedParkingLotList(List<ParkingLot> managedParkingLotList) {
-        this.managedParkingLotList = managedParkingLotList;
+    public void addManagedParkingLot(ParkingLot parkingLot) {
+        this.managedParkingLotList.add(parkingLot);
+    }
+
+    public List<ParkingLot> getManagedParkingLotList() {
+        return this.managedParkingLotList;
     }
 
     public Ticket parkCar(Car car) throws ParkingLotFullException {
