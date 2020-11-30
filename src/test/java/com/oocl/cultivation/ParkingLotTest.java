@@ -122,7 +122,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_1_when_get_available_space_amount_given_parking_lot_capacity_2_parked_car_1() {
+    void should_return_one_when_get_available_space_amount_given_parking_lot_capacity_two_parked_car_one() {
         //given
         Car car = new Car();
 
