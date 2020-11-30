@@ -104,7 +104,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_true_when_check_is_full_given_parking_lot_capacity_0_or_capacity_equal_parked_car_amount() {
+    void should_return_true_when_check_is_full_given_parking_lot_capacity_0_and_capacity_equal_parked_car_amount() {
         //given
         Car car = new Car();
 
@@ -119,5 +119,20 @@ public class ParkingLotTest {
         //then
         assertTrue(result1);
         assertTrue(result2);
+    }
+
+    @Test
+    void should_return_1_when_get_available_space_amount_given_parking_lot_capacity_2_parked_car_1() {
+        //given
+        Car car = new Car();
+
+        ParkingLot parkingLot = new ParkingLot(2);
+        parkingLot.parkCar(car);
+
+        //when
+        Integer availableSpaceAmount = parkingLot.getAvailableSpaceAmount();
+
+        //then
+        assertEquals(1, availableSpaceAmount);
     }
 }
