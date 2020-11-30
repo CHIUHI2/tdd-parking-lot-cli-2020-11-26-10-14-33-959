@@ -10,6 +10,7 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -23,12 +24,24 @@ public class ParkingLotServiceManagerTest extends StandardParkingBoyTest {
     }
 
     @Test
+    void should_add_managed_parking_boy_when_add_managed_parking_boy_given_manager_parking_boy() {
+        //given
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy();
+
+        //when
+        manager.addManagedParkingBoy(standardParkingBoy);
+
+        //then
+        assertTrue(manager.getManagedParkingBoyList().contains(standardParkingBoy));
+    }
+
+    @Test
     void should_call_parking_boy_park_car_once_when_assign_parking_boy_park_car_given_managed_parking_boy_manager_car() throws ParkingLotFullException {
         //given
         ParkingBoy parkingBoy = Mockito.mock(ParkingBoy.class);
         when(parkingBoy.hasAvailableParkingLot()).thenReturn(true);
 
-        manager.setManagedParkingBoyList(Collections.singletonList(parkingBoy));
+        manager.addManagedParkingBoy(parkingBoy);
 
         Car car = new Car();
 
@@ -47,7 +60,7 @@ public class ParkingLotServiceManagerTest extends StandardParkingBoyTest {
         ParkingBoy parkingBoy = Mockito.mock(ParkingBoy.class);
         when(parkingBoy.isManagedParkingLot(parkingLot)).thenReturn(true);
 
-        manager.setManagedParkingBoyList(Collections.singletonList(parkingBoy));
+        manager.addManagedParkingBoy(parkingBoy);
 
         Ticket ticket = new Ticket(parkingLot);
 
@@ -66,7 +79,7 @@ public class ParkingLotServiceManagerTest extends StandardParkingBoyTest {
         StandardParkingBoy parkingBoy = new StandardParkingBoy();
         parkingBoy.addManagedParkingLot(parkingLot);
 
-        manager.setManagedParkingBoyList(Collections.singletonList(parkingBoy));
+        manager.addManagedParkingBoy(parkingBoy);
 
         Ticket ticket = new Ticket(parkingLot);
 
@@ -85,7 +98,7 @@ public class ParkingLotServiceManagerTest extends StandardParkingBoyTest {
         StandardParkingBoy parkingBoy = new StandardParkingBoy();
         parkingBoy.addManagedParkingLot(parkingLot);
 
-        manager.setManagedParkingBoyList(Collections.singletonList(parkingBoy));
+        manager.addManagedParkingBoy(parkingBoy);
 
         Car car = new Car();
 
@@ -106,14 +119,15 @@ public class ParkingLotServiceManagerTest extends StandardParkingBoyTest {
 
         StandardParkingBoy standardParkingBoy = new StandardParkingBoy();
         standardParkingBoy.addManagedParkingLot(parkingLot);
+        manager.addManagedParkingBoy(standardParkingBoy);
 
         SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
         smartParkingBoy.addManagedParkingLot(parkingLot);
+        manager.addManagedParkingBoy(smartParkingBoy);
 
         SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy();
         superSmartParkingBoy.addManagedParkingLot(parkingLot);
-
-        manager.setManagedParkingBoyList(Arrays.asList(standardParkingBoy, smartParkingBoy, superSmartParkingBoy));
+        manager.addManagedParkingBoy(superSmartParkingBoy);
 
         Car car = new Car();
 

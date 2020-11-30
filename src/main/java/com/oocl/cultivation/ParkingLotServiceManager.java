@@ -15,11 +15,14 @@ public class ParkingLotServiceManager extends StandardParkingBoy {
         this.managedParkingBoyList = new ArrayList<>();
     }
 
-    public void setManagedParkingBoyList(List<ParkingBoy> managedParkingBoyList) {
-        this.managedParkingBoyList = managedParkingBoyList;
+    public void addManagedParkingBoy(ParkingBoy parkingBoy) {
+        this.managedParkingBoyList.add(parkingBoy);
     }
 
-    //todo
+    public List<ParkingBoy> getManagedParkingBoyList() {
+        return managedParkingBoyList;
+    }
+
     public Ticket assignParkingBoyParkCar(Car car) throws ParkingLotFullException {
         if (car == null) return null; //need to define exception by confirming requirements
 
@@ -30,7 +33,6 @@ public class ParkingLotServiceManager extends StandardParkingBoy {
                 .parkCar(car);
     }
 
-    //todo
     public Car assignParkingBoyTakeCar(Ticket ticket) throws UnrecognizedTicketException {
         if (ticket == null) return null; //need to define exception by confirming requirements
 
