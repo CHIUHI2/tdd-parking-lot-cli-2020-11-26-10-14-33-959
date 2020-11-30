@@ -29,6 +29,10 @@ public class ParkingBoy {
         return availableParkingLot.get().parkCar(car);
     }
 
+    public boolean hasAvailableParkingLot() {
+        return this.parkingBoyStrategy.getAvailableParkingLot(this.managedParkingLotList).isPresent();
+    }
+
     public Car takeCar(Ticket ticket) throws UnrecognizedTicketException {
         if (ticket == null || !isManagedParkingLot(ticket.getParkingLot())) return null;
 
@@ -40,7 +44,7 @@ public class ParkingBoy {
         return car;
     }
 
-    private boolean isManagedParkingLot(ParkingLot parkingLot) {
+    public boolean isManagedParkingLot(ParkingLot parkingLot) {
         return this.managedParkingLotList.contains(parkingLot);
     }
 }

@@ -3,12 +3,10 @@ package com.oocl.cultivation;
 import java.util.HashMap;
 
 public class ParkingLot {
-    private Integer capacity;
+    private Integer capacity = 10;
     private HashMap<Ticket, Car> ticketCarMapping;
 
     ParkingLot() {
-        this.capacity = 10;
-        this.ticketCarMapping = new HashMap<>();
     }
 
     ParkingLot(int capacity) {
@@ -17,7 +15,7 @@ public class ParkingLot {
     }
 
     public Ticket parkCar(Car car) {
-        if (isFull() || car == null || this.ticketCarMapping.containsValue(car)) return null;
+        if (isFull() || car == null || this.ticketCarMapping.containsValue(car)) return null; //need to define exception by confirming requirements
 
         Ticket ticket = new Ticket(this);
         this.ticketCarMapping.put(ticket, car);

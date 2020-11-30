@@ -19,19 +19,25 @@ public class ParkingLotServiceManager extends StandardParkingBoy {
         this.managedParkingBoyList = managedParkingBoyList;
     }
 
-    public Ticket assignParkingBoyParkCar(Car car, ParkingBoy parkingBoy) throws ParkingLotFullException {
-        if (car == null || parkingBoy == null || !isManagedParkingBoy(parkingBoy)) return null;
+    //todo
+    public Ticket assignParkingBoyParkCar(Car car) throws ParkingLotFullException {
+        if (car == null) return null; //need to define exception by confirming requirements
 
-        return parkingBoy.parkCar(car);
+        return managedParkingBoyList.stream()
+                .filter(ParkingBoy::hasAvailableParkingLot)
+                .findFirst()
+                .orElseThrow(ParkingLotFullException::new)
+                .parkCar(car);
     }
 
-    public Car assignParkingBoyTakeCar(Ticket ticket, ParkingBoy parkingBoy) throws UnrecognizedTicketException {
-        if (ticket == null || parkingBoy == null || !isManagedParkingBoy(parkingBoy)) return null;
+    //todo
+    public Car assignParkingBoyTakeCar(Ticket ticket) throws UnrecognizedTicketException {
+        if (ticket == null) return null; //need to define exception by confirming requirements
 
-        return parkingBoy.takeCar(ticket);
-    }
-
-    private boolean isManagedParkingBoy(ParkingBoy parkingBoy) {
-        return this.managedParkingBoyList.contains(parkingBoy);
+        return managedParkingBoyList.stream()
+                .filter(parkingBoy -> parkingBoy.isManagedParkingLot(ticket.getParkingLot()))
+                .findFirst()
+                .orElseThrow(UnrecognizedTicketException::new)
+                .takeCar(ticket);
     }
 }

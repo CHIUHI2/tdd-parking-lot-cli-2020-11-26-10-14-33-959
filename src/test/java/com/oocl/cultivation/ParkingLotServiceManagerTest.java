@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class ParkingLotServiceManagerTest extends StandardParkingBoyTest {
     private final ParkingLotServiceManager manager = this.getParkingBoy();
@@ -26,60 +27,36 @@ public class ParkingLotServiceManagerTest extends StandardParkingBoyTest {
     void should_call_parking_boy_park_car_once_when_assign_parking_boy_park_car_given_managed_parking_boy_manager_car() throws ParkingLotFullException {
         //given
         ParkingBoy parkingBoy = Mockito.mock(ParkingBoy.class);
+        when(parkingBoy.hasAvailableParkingLot()).thenReturn(true);
 
         manager.setManagedParkingBoyList(Collections.singletonList(parkingBoy));
 
         Car car = new Car();
 
         //when
-        manager.assignParkingBoyParkCar(car, parkingBoy);
+        manager.assignParkingBoyParkCar(car);
 
         //then
         verify(parkingBoy, times(1)).parkCar(car);
     }
 
     @Test
-    void should_not_call_parking_boy_park_car_when_assign_parking_boy_park_car_given_not_managed_parking_boy_manager_car() throws ParkingLotFullException {
-        //given
-        ParkingBoy parkingBoy = Mockito.mock(ParkingBoy.class);
-
-        Car car = new Car();
-
-        //when
-        manager.assignParkingBoyParkCar(car, parkingBoy);
-
-        //then
-        verify(parkingBoy, times(0)).parkCar(car);
-    }
-
-    @Test
     void should_call_parking_boy_take_car_once_when_assign_parking_boy_take_car_given_managed_parking_boy_manager_ticket() throws UnrecognizedTicketException {
         //given
+        ParkingLot parkingLot = new ParkingLot();
+
         ParkingBoy parkingBoy = Mockito.mock(ParkingBoy.class);
+        when(parkingBoy.isManagedParkingLot(parkingLot)).thenReturn(true);
 
         manager.setManagedParkingBoyList(Collections.singletonList(parkingBoy));
 
-        Ticket ticket = new Ticket(new ParkingLot());
+        Ticket ticket = new Ticket(parkingLot);
 
         //when
-        manager.assignParkingBoyTakeCar(ticket, parkingBoy);
+        manager.assignParkingBoyTakeCar(ticket);
 
         //then
         verify(parkingBoy, times(1)).takeCar(ticket);
-    }
-
-    @Test
-    void should_not_call_parking_boy_take_car_when_assign_parking_boy_take_car_given_not_managed_parking_boy_manager_ticket() throws UnrecognizedTicketException {
-        //given
-        ParkingBoy parkingBoy = Mockito.mock(ParkingBoy.class);
-
-        Ticket ticket = new Ticket(new ParkingLot());
-
-        //when
-        manager.assignParkingBoyTakeCar(ticket, parkingBoy);
-
-        //then
-        verify(parkingBoy, times(0)).takeCar(ticket);
     }
 
     @Test
@@ -95,7 +72,7 @@ public class ParkingLotServiceManagerTest extends StandardParkingBoyTest {
         Ticket ticket = new Ticket(parkingLot);
 
         //when
-        UnrecognizedTicketException exception = assertThrows(UnrecognizedTicketException.class, () -> manager.assignParkingBoyTakeCar(ticket, parkingBoy));
+        UnrecognizedTicketException exception = assertThrows(UnrecognizedTicketException.class, () -> manager.assignParkingBoyTakeCar(ticket));
 
         //then
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
@@ -117,7 +94,7 @@ public class ParkingLotServiceManagerTest extends StandardParkingBoyTest {
         Ticket ticket = parkingBoy.parkCar(car);
 
         parkingBoy.takeCar(ticket);
-        UnrecognizedTicketException exception = assertThrows(UnrecognizedTicketException.class, () -> manager.assignParkingBoyTakeCar(ticket, parkingBoy));
+        UnrecognizedTicketException exception = assertThrows(UnrecognizedTicketException.class, () -> manager.assignParkingBoyTakeCar(ticket));
 
         //then
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
@@ -142,9 +119,9 @@ public class ParkingLotServiceManagerTest extends StandardParkingBoyTest {
         Car car = new Car();
 
         //when
-        ParkingLotFullException exception1 = assertThrows(ParkingLotFullException.class, () -> manager.assignParkingBoyParkCar(car, standardParkingBoy));
-        ParkingLotFullException exception2 = assertThrows(ParkingLotFullException.class, () -> manager.assignParkingBoyParkCar(car, smartParkingBoy));
-        ParkingLotFullException exception3 = assertThrows(ParkingLotFullException.class, () -> manager.assignParkingBoyParkCar(car, superSmartParkingBoy));
+        ParkingLotFullException exception1 = assertThrows(ParkingLotFullException.class, () -> manager.assignParkingBoyParkCar(car));
+        ParkingLotFullException exception2 = assertThrows(ParkingLotFullException.class, () -> manager.assignParkingBoyParkCar(car));
+        ParkingLotFullException exception3 = assertThrows(ParkingLotFullException.class, () -> manager.assignParkingBoyParkCar(car));
 
         //then
         assertEquals("Not enough position.", exception1.getMessage());
