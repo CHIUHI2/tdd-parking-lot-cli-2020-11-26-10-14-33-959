@@ -135,4 +135,19 @@ public class ParkingLotTest {
         //then
         assertEquals(1, availableSpaceAmount);
     }
+
+    @Test
+    void should_return_zero_point_five_when_get_availability_rate_given_parking_lot_capacity_two_parked_car_one() {
+        //given
+        Car car = new Car();
+
+        ParkingLot parkingLot = new ParkingLot(2);
+        parkingLot.parkCar(car);
+
+        //when
+        Double availabilityRate = parkingLot.getAvailabilityRate();
+
+        //then
+        assertEquals(0.5, availabilityRate);
+    }
 }
