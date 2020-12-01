@@ -5,6 +5,6 @@ import com.oocl.cultivation.ParkingLot;
 import java.util.List;
 import java.util.Optional;
 
-public interface ParkingBoyStrategy {
+public interface ParkingBoyParkingStrategy {
     Optional<ParkingLot> getAvailableParkingLot(List<ParkingLot> managedParkingLotList);
 }

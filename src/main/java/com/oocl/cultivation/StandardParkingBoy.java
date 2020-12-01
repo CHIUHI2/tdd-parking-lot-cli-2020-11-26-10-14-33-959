@@ -1,9 +1,9 @@
 package com.oocl.cultivation;
 
-import com.oocl.cultivation.Strategy.StandardParkingBoyStrategy;
+import com.oocl.cultivation.Strategy.StandardParkingBoyParkingStrategy;
 
 public class StandardParkingBoy extends ParkingBoy {
     StandardParkingBoy() {
-        super(new StandardParkingBoyStrategy());
+        super(new StandardParkingBoyParkingStrategy());
     }
 }
